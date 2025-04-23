@@ -48,6 +48,7 @@ public class Main {
 							 + "1)Пойти в бой\n"
 							 + "2)Магзин\n"
 							 + "3)Сменить снаряжение\n"
+							 + "4)Восстановить силы\n"
 							 + "0)Выйти из игры(потерять прогресс)\n");
 			choice = scan.nextInt();
 			switch(choice) {
@@ -59,6 +60,9 @@ public class Main {
 				break;
 			case 3:
 				player.ChangeEquipment();
+				break;
+			case 4:
+				player.RestoreHealth();
 				break;
 			}
 		}
