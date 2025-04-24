@@ -13,9 +13,10 @@ abstract public class Enemy {
 		this.cost = cost;
 	}
 	
-	void Attack(Player player) {
-		float attack = melee_damage/player.armor;
-		player.health -= attack;
-		System.out.println("-" + attack + " hp");
+	float Attack(float player_health, int player_armor) {
+		float attack = melee_damage/player_armor;
+		player_health -= attack;
+		System.out.println("-" + attack + "players hp");
+		return player_health;
 	}
 }
