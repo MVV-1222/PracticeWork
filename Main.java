@@ -47,6 +47,7 @@ public class Main {
 		}
 		
 		System.out.println("Введите имя:");		//user typing a name
+		scan.next();
 		String name = scan.nextLine();
 		
 		Player player = new Player(name, hp, def, atk, weapon);//create Player object

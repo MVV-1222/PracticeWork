@@ -44,21 +44,21 @@ public class Player {
 		
 		if(battles_num % 5 != 0) {				//adding weak enemies
 			for(int i =0;i<enemies_num;i++) {
-				enemy_list.add(new WeakEnemy("slime" + (i+1)));
+				enemy_list.add(new WeakEnemy("slimeWeak" + (i+1)));
 			}
 		}
-		else {									//boss fight
-			for(int i =0;i<4;i++) {
-				enemy_list.add(new WeakEnemy("slime" + (i+1)));
+		else {									//boss fight every 5 battles
+			for(int i =0;i<2;i++) {
+				enemy_list.add(new MiddleEnemy("slimeMiddle" + (i+1)));
 			}
-			enemy_list.add(new BossEnemy("slime boss"));
+			enemy_list.add(new BossEnemy("slimeBoss"));
 		}
 		
 		System.out.println("Встретились эти враги:"); //meeting enemies
 		int i = 1;
 		for(Enemy enemy : enemy_list) {
 			System.out.println(i + ") " + enemy.name +"\t" + enemy.health);
-			earned_gold += enemy.cost;
+			earned_gold += enemy.cost;			//summing the cost of each enemy
 			i++;
 		}
 		
@@ -68,7 +68,7 @@ public class Player {
 							 + "2)Ничего не делать");
 			int choice = scan.nextInt();
 			switch(choice) {
-			case 1:											//who to hit
+			case 1:											//choosing who to hit
 				System.out.println("Кого атаковать:");	
 				i = 1;
 				for(Enemy enemy : enemy_list) {
@@ -76,6 +76,7 @@ public class Player {
 					i++;
 				}
 				choice = scan.nextInt();					//choosing
+				
 				i=1;
 				for(Enemy enemy : enemy_list) {				//hitting selected enemy
 					if (i==choice) {
@@ -100,11 +101,15 @@ public class Player {
 		}
 		if(health > 0) {					//if the battle ends with hp > 0
 			gold += earned_gold; 
-			System.out.println("Ты выиграл! Статистика:\n"
+			System.out.println("Ты выиграл!\nСтатистика:\n"
 							 + "Заработано: " + earned_gold + "\n"
 							 + "Осталось здоровья " + health + "\n"
 							 + "Всего боёв: " + battles_num);
-			
+			return;
+		}
+		else {
+			System.out.println("You lose!");
+			return;
 		}
 	}
 	
