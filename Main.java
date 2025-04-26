@@ -8,20 +8,24 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		int choice = 2;
-		System.out.println("1)Начать игру\n"
+		
+		System.out.println("1)Начать игру\n"	//start menu
 						 + "2)Выйти\n");
 		choice = scan.nextInt();
-		if(choice == 2)
+		
+		if(choice == 2)					//handle users choice
 			return;
 		float hp = 0, atk = 0 ;
 		int def = 0;
 		Weapon weapon = new Weapon("none", -1, -1, 0);
-		System.out.println("Выбкри класс:\n"
+		
+		System.out.println("Выбкри класс:\n"				//choosing players class
 						 + "1)Воин (100 hp 50 def 20 atk)\n"
 						 + "2)Вор  (150 hp 20 def 15 atk)\n"
 						 + "3)Маг  (80 hp 10 def 35 atk)\n");
 		choice = scan.nextInt();
-		switch(choice) {
+		
+		switch(choice) {		//handle users choice
 		case 1:
 			hp = 100;
 			def = 50; 
@@ -41,11 +45,13 @@ public class Main {
 			weapon = new Weapon("wand1",30, 2, 0);
 			break;
 		}
-		System.out.println("Введите имя:");
-		String name = scan.nextLine();
-		Player player = new Player(name, hp, def, atk, weapon);
 		
-		ArrayList<Weapon> swords = new ArrayList<Weapon>();
+		System.out.println("Введите имя:");		//user typing a name
+		String name = scan.nextLine();
+		
+		Player player = new Player(name, hp, def, atk, weapon);//create Player object
+		
+		ArrayList<Weapon> swords = new ArrayList<Weapon>();//create weapons in shop
 		ArrayList<Weapon> wands = new ArrayList<Weapon>();
 		
 		swords.add(new Weapon("sword2", 40, 1, 30));//swords
@@ -56,7 +62,7 @@ public class Main {
 		wands.add(new Weapon("wand3", 70, 2, 60));
 		wands.add(new Weapon("wand4", 90, 2, 90));
 		
-		while(choice!=0) {
+		while(choice!=0) {				//main menu
 			System.out.println("Меню:\n"
 							 + "1)Пойти в бой\n"
 							 + "2)Магзин\n"
@@ -64,7 +70,8 @@ public class Main {
 							 + "4)Восстановить силы\n"
 							 + "0)Выйти из игры(потерять прогресс)\n");
 			choice = scan.nextInt();
-			switch(choice) {
+			
+			switch(choice) {		//handle users choice
 			case 1:
 				player.ToBattle();
 				break;
