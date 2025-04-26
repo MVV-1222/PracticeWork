@@ -66,8 +66,7 @@ public class Main {
 			System.out.println("Меню:\n"
 							 + "1)Пойти в бой\n"
 							 + "2)Магзин\n"
-							 + "3)Сменить снаряжение\n"
-							 + "4)Восстановить силы\n"
+							 + "3)Восстановить силы\n"
 							 + "0)Выйти из игры(потерять прогресс)\n");
 			choice = scan.nextInt();
 			
@@ -82,14 +81,10 @@ public class Main {
 					player.ToShop(wands);
 				break;
 			case 3:
-				player.ChangeEquipment();
-				break;
-			case 4:
 				player.RestoreHealth();
 				break;
 			}
 		}
-		
 		scan.close();
 		return;
 	}

@@ -12,7 +12,7 @@ public class Player {
 	public int gold = 0;
 	public int battles_num = 0;
 	public Weapon equ_weapon;
-	//public ArrayList<Weapon> inventory = new ArrayList<Weapon>();
+	public ArrayList<Weapon> inventory = new ArrayList<Weapon>();
 	
 	public Player(String name, float health, int armor, float melee_damage, Weapon weapon) {
 		this.name = name;
@@ -110,34 +110,40 @@ public class Player {
 	
 	public void ToShop(ArrayList<Weapon> weapon_list) {
 		Scanner scan = new Scanner(System.in);
-		int i = 1;
-		while(true) {
-			System.out.println("Твои деньги: "+ gold +"\nОружие на выбор:");
+		
+		while(true) {		//inf cycle
+			int i = 1;
+			
+			//typing in console list of available positions in shop
+			System.out.println("Твои деньги: "+ gold +"\nОружие на выбор:"); 
 			for(Weapon weapon : weapon_list) {
 				System.out.println(i+") " + weapon.name + "\tЦена: " + weapon.price);
 				i++;
 			}
+			
+			//choosing a position from list
 			System.out.println("Выбери что купить(0 - выход)");
 			int choice = scan.nextInt();
+			
+			//handle a choice
 			switch(choice) {
-			case 0:
+			case 0:		//if 0 - exit
 				return;
-			default:
-				if(gold < weapon_list.get(choice-1).price) {
+			default:	//other value - buy current position in shop
+				if(gold < weapon_list.get(choice-1).price) { //if lack of money
 					System.out.println("Не хватает денег!");
 					break;
-				}
-				equ_weapon = weapon_list.get(choice-1);
+				}				
+				equ_weapon = weapon_list.get(choice-1);		//buy the position
 				weapon_list.remove(choice-1);
 				gold -= equ_weapon.price;
+			
 			}
-			i=1;
 		}
 	}
-	public void ChangeEquipment() {
-		
-	}
 	public void RestoreHealth() {
-		
+		health = 100;
+		System.out.println("Здоровье восствновлено до 100!");
+		return;
 	}
 }
